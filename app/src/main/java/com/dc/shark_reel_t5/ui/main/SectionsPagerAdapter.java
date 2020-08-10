@@ -27,10 +27,11 @@ import java.util.ArrayList;
  */
 public class SectionsPagerAdapter extends FragmentStateAdapter {
 
+    private int idGen = 0;
     private FragmentTransaction currTransaction = null;
     private ArrayList<String> mTitles = new ArrayList<String>();
     private ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
-    private ArrayList<Integer> mFragmentIDs = new ArrayList<Integer>();
+    private ArrayList<Long> mFragmentIDs = new ArrayList<Long>();
 
 
     public SectionsPagerAdapter(FragmentManager fm, Lifecycle lc) {
@@ -55,9 +56,10 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
     //On call: adds a hook to the end of the list in UI(DOES NOT CHANGE BACK END VARIABLES YET)
     public void addHookFrag(){
+        idGen++;
         mTitles.add("Hook " + (mFragments.size() + 1));
         PlaceholderFragment currFrag = PlaceholderFragment.newInstance(mFragments.size() + 1);
-        mFragmentIDs.add(currFrag.getId());
+        mFragmentIDs.add((long)idGen);
         mFragments.add(currFrag);
         notifyItemInserted(mFragments.size()-1);
     }
@@ -77,10 +79,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public long getItemId(int position){
-        if(position >= getItemCount() || position < 0)
-            return RecyclerView.NO_ID;
-
-        return mFragmentIDs.get(position);
+        return (long)mFragmentIDs.get(position);
     }
 
     @Override
