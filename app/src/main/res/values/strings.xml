@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Shark Data</string>
+    <string name="tab_text_1">Hook-1</string>
+    <string name="tab_text_2">Hook-2</string>
+    <string name="tab_text_3">Hook-3</string>
+    <string name="tab_text_4">Hook-4</string>
+    <string name="tab_text_5">Hook-5</string>
+    <string name="tab_text_6">Hook-6</string>
+    <string name="tab_text_7">Hook-7</string>
+    <string name="tab_text_8">Hook-8</string>
+    <string name="break_off">Break off</string>
+
+    <string-array name="species">
+        <item>-select item-</item>
+        <item>Atl sharpnose (RTER)</item>
+        <item>Blacknose (CACR)</item>
+        <item>Blacktip (CLIM)</item>
+        <item>Bonnethead (STIB)</item>
+        <item>Great Hammerhead (SMOK)</item>
+        <item>Lemon (NBRE)</item>
+        <item>Nurse (GCIR)</item>
+        <item>Reef (CPER)</item>
+        <item>Sandbar (CPLU)</item>
+        <item>Sawfish (PPEC)r</item>
+        <item>Scalloped hammerhead (SLEW)</item>
+        <item>Southern ray (HAME)</item>
+        <item>Spinner (CBRE)</item>
+        <item>Tiger (GCUV)</item>
+        <item>Yellow Ray (UJAM)</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="bait">
+        <item>-select item-</item>
+        <item>Barracuda</item>
+        <item>Bonita</item>
+        <item>Ladyfish</item>
+        <item>None</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>
