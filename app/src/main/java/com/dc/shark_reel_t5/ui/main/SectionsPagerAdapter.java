@@ -18,6 +18,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.dc.shark_reel_t5.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -28,9 +29,7 @@ import java.util.ArrayList;
 public class SectionsPagerAdapter extends FragmentStateAdapter {
 
     private int idGen = 0;
-    private FragmentTransaction currTransaction = null;
-    private ArrayList<String> mTitles = new ArrayList<String>();
-    private ArrayList<Fragment> mFragments = new ArrayList<Fragment>();
+    private ArrayList<PlaceholderFragment> mFragments = new ArrayList<PlaceholderFragment>();
     private ArrayList<Long> mFragmentIDs = new ArrayList<Long>();
 
 
@@ -45,30 +44,38 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     }
 
     @Nullable
-    public CharSequence getPageTitle(int position) { return (CharSequence) mTitles.get(position); }
+    public CharSequence getPageTitle(int position) { return "Hook #" + (position+1); }
 
 
     public String getTitle(int position) {
-        return mTitles.get(position);
+        return "Hook #" + (position+1);
     }
 
     //Dynamic(runtime) methods:
 
     //On call: adds a hook to the end of the list in UI(DOES NOT CHANGE BACK END VARIABLES YET)
-    public void addHookFrag(){
+    public void addHookFrag() {
+
         idGen++;
-        mTitles.add("Hook " + (mFragments.size() + 1));
         PlaceholderFragment currFrag = PlaceholderFragment.newInstance(mFragments.size() + 1);
         mFragmentIDs.add((long)idGen);
         mFragments.add(currFrag);
         notifyItemInserted(mFragments.size()-1);
     }
 
-    public void delHookFrag(int position){
+    public void delHookFrag(int position, TabLayout tabs){
+
         mFragments.remove(position);
         mFragmentIDs.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount() - position);
+
+
+        for(int i = position; i<getItemCount(); i++){
+            mFragments.get(i).setSectionLabel("Hook #" + (i+1));
+            notifyItemChanged(i);
+        }
+
     }
 
 

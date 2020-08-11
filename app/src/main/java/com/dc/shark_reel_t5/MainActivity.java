@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         SectionsPagerAdapter sectionsPagerAdapter;
         ViewPager2 viewPager = findViewById(R.id.view_pager);
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText("Hook " + (position + 1))
         ).attach();
+
         FloatingActionButton export = findViewById(R.id.export);
         FloatingActionButton add = findViewById(R.id.add);
         FloatingActionButton delete = findViewById(R.id.delete);
@@ -59,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout);
                 deleteData(tabLayout.getSelectedTabPosition());
-                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition());
 
             }
         });

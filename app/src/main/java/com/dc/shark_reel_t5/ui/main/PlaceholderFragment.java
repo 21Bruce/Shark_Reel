@@ -57,6 +57,7 @@ import android.widget.ToggleButton;
  * A placeholder fragment containing a simple view.
  */
 public class PlaceholderFragment extends Fragment {
+
     private Chronometer GD;
     private Chronometer B1;
     private Chronometer B2;
@@ -80,7 +81,6 @@ public class PlaceholderFragment extends Fragment {
     private boolean reset;
 
     public static final String ARG_SECTION_NUMBER = "section_number";
-//    public static ArrayList<PlaceholderFragment> frags = new ArrayList<PlaceholderFragment>();
 
     private PageViewModel pageViewModel;
 
@@ -104,10 +104,13 @@ public class PlaceholderFragment extends Fragment {
         pageViewModel.setIndex(index);
     }
 
+    public void setSectionLabel(CharSequence txt){
 
-    public View getRoot(){
-        return root;
+        TextView SectionLabel = root.findViewById(R.id.section_label);
+        SectionLabel.setText(txt);
+
     }
+
 
     @Override
     public View onCreateView(
