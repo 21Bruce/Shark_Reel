@@ -104,12 +104,12 @@ public class PlaceholderFragment extends Fragment {
         pageViewModel.setIndex(index);
     }
 
-    public void setSectionLabel(CharSequence txt){
-
-        TextView SectionLabel = root.findViewById(R.id.section_label);
-        SectionLabel.setText(txt);
-
+    public void updatePosition(int position){
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARG_SECTION_NUMBER, position);
+        this.setArguments(bundle);
     }
+
 
 
     @Override
