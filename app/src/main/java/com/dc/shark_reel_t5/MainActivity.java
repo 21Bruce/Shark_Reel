@@ -26,6 +26,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tabs);
         new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> tab.setText("Hook " + (position + 1))
+                (tab, position) -> {if(position < sectionsPagerAdapter.getItemCount()){
+                tab.setText("Hook " + (position+1));
+                }
+                }
+
         ).attach();
 
         FloatingActionButton export = findViewById(R.id.export);

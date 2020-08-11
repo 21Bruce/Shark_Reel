@@ -63,11 +63,11 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         notifyItemInserted(mFragments.size()-1);
     }
 
-    public void delHookFrag(int position, TabLayout tabs){
+    public void delHookFrag(int position, TabLayout tabs) {
 
         mFragments.remove(position);
         mFragmentIDs.remove(position);
-        notifyItemRemoved(position);
+        tabs.removeTabAt(position);
         notifyItemRangeChanged(position, getItemCount() - position);
 
 
@@ -85,7 +85,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public long getItemId(int position){
+    public long getItemId(int position) {
         return (long)mFragmentIDs.get(position);
     }
 
