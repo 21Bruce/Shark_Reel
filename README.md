@@ -3,7 +3,7 @@ The official Shark App(name temporary) Repository
 
 What is the Shark App?
 
-Shark Researchers accross the U.S. continue to use inept and outdated data capture methods, such as the old clipboard and pencil. Furthermore, when considering the rough conditions common to the raging sea, the potential for data obfuscation becomes palpable. Shark App seeks to alleviate these problems by giving researchers a centralized and automated system to store data in. Shark App manages timers along with a plethora of other information in it's current state, and gives users the opportunity to upload their data into an automated spreadsheet.
+Shark Researchers accross the globe continue to use inept and outdated data capture methods, such as the old clipboard and pencil. Furthermore, when considering the rough conditions common to the raging sea, the potential for data obfuscation becomes palpable. Shark App seeks to alleviate these problems by giving researchers a centralized and automated system to store data in. Shark App manages timers along with a plethora of other information in it's current state, and gives users the opportunity to upload their data into an automated spreadsheet.
 
 Why Shark App?
 
