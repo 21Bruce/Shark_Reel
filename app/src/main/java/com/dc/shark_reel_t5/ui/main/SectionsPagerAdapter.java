@@ -68,6 +68,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
         notifyItemInserted(mFragments.size()-1);
 
+        Log.d(TAG, "ID generator incremented");
         Log.i(TAG, "Fragment successfully inserted at raw position " + (mFragments.size()-1));
     }
 
@@ -88,7 +89,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         if(getItemCount() == 0){
             addHookFrag();
         }
-
+        Log.d(TAG, "Item count decremented");
         Log.i(TAG, "Fragment successfully deleted at raw position " + position);
 
     }
