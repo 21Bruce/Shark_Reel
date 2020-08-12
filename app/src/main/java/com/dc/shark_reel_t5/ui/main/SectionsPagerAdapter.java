@@ -73,9 +73,13 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount() - position);
 
-        //Updates the section number for all affected fragments
+        //Updates the section number for all effected fragments
         for(int i = position; i < getItemCount(); i++){
             mFragments.get(i).updatePosition(i + 1);
+        }
+
+        if(getItemCount() == 0){
+            addHookFrag();
         }
 
 
