@@ -70,6 +70,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         mFragments.remove(position);
         mFragmentIDs.remove(position);
         tabs.removeTabAt(position);
+        notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount() - position);
 
         //Updates the section number for all affected fragments
@@ -91,7 +92,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     }
 
     @Override
-    public boolean containsItem(long itemId){
+    public boolean containsItem(long itemId) {
         return mFragmentIDs.contains((int)itemId);
     }
 
