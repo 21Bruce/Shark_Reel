@@ -38,13 +38,12 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     public SectionsPagerAdapter(FragmentManager fm, Lifecycle lc) {
 
         super(fm, lc);
-        Log.i(TAG, "constructed");
+
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Log.i(TAG, "Loaded fragment at raw position " + position);
         return mFragments.get(position);
     }
 
@@ -68,8 +67,6 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
         notifyItemInserted(mFragments.size()-1);
 
-        Log.d(TAG, "ID generator incremented");
-        Log.i(TAG, "Fragment successfully inserted at raw position " + (mFragments.size()-1));
     }
 
 
@@ -85,14 +82,18 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         for(int i = position; i < getItemCount(); i++){
             mFragments.get(i).updatePosition(i + 1);
         }
+        Log.i(TAG, "Tab deleted");
 
         if(getItemCount() == 0){
             addHookFrag();
         }
-        Log.d(TAG, "Item count decremented");
-        Log.i(TAG, "Fragment successfully deleted at raw position " + position);
 
     }
+
+//    public void clearHooks(TabLayout tabs){
+//        mFragments = new ArrayList<PlaceholderFragment>();
+//        mFragmentIDs = new
+//    }
 
     @Override
     public int getItemCount() {
