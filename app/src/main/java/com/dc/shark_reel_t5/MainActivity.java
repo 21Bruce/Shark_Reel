@@ -40,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SectionsPagerAdapter sectionsPagerAdapter;
         ViewPager2 viewPager = findViewById(R.id.view_pager);
+        Log.d(TAG, "ViewPager initialized");
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(sectionsPagerAdapter);
+        Log.d(TAG, "SectionsPagerAdapter initialized");
         TabLayout tabLayout = findViewById(R.id.tabs);
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {if(position < sectionsPagerAdapter.getItemCount()){
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
         ).attach();
+        Log.d(TAG, "TabLayout initialized");
 
         FloatingActionButton export = findViewById(R.id.export);
         FloatingActionButton add = findViewById(R.id.add);
@@ -128,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                     startActivity(Intent.createChooser(fileIntent, "send mail"));
+                    Log.i(TAG, "Hook data exported as CSV");
 
                 } catch (Exception e) {
                     e.printStackTrace();
