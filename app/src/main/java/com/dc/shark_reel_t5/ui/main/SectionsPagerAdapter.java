@@ -3,6 +3,7 @@ package com.dc.shark_reel_t5.ui.main;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,18 +29,22 @@ import java.util.ArrayList;
  */
 public class SectionsPagerAdapter extends FragmentStateAdapter {
 
+    private static final String TAG = "sectionsPagerAdapter";
     private int idGen = 0;
     private ArrayList<PlaceholderFragment> mFragments = new ArrayList<PlaceholderFragment>();
     private ArrayList<Long> mFragmentIDs = new ArrayList<Long>();
 
 
     public SectionsPagerAdapter(FragmentManager fm, Lifecycle lc) {
+
         super(fm, lc);
+        Log.i(TAG, "constructed");
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        Log.i(TAG, "Loaded fragment at raw position " + position);
         return mFragments.get(position);
     }
 
@@ -62,6 +67,8 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         mFragments.add(currFrag);
 
         notifyItemInserted(mFragments.size()-1);
+
+        Log.i(TAG, "Fragment successfully inserted at raw position " + (mFragments.size()-1));
     }
 
 
@@ -82,6 +89,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
             addHookFrag();
         }
 
+        Log.i(TAG, "Fragment successfully deleted at raw position " + position);
 
     }
 
