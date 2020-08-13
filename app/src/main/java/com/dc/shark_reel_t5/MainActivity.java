@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 sectionsPagerAdapter.clearHooks(tabLayout);
                 clearData();
 
-                //click add once everything has loaded
+                //click add once everything has loaded, uses post to run on main thread
                 add.post(new Runnable(){
                     @Override
                     public void run() {
