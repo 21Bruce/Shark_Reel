@@ -3,6 +3,7 @@ package com.dc.shark_reel_t5.ui.main;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,13 +29,16 @@ import java.util.ArrayList;
  */
 public class SectionsPagerAdapter extends FragmentStateAdapter {
 
+    private static final String TAG = "sectionsPagerAdapter";
     private int idGen = 0;
     private ArrayList<PlaceholderFragment> mFragments = new ArrayList<PlaceholderFragment>();
     private ArrayList<Long> mFragmentIDs = new ArrayList<Long>();
 
 
     public SectionsPagerAdapter(FragmentManager fm, Lifecycle lc) {
+
         super(fm, lc);
+
     }
 
     @NonNull
@@ -61,7 +65,19 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         mFragmentIDs.add((long)idGen);
         mFragments.add(currFrag);
 
-        notifyItemInserted(mFragments.size()-1);
+        notifyItemInserted(getItemCount()-1);
+
+    }
+
+    public void addHookFrag(int position) {
+
+        idGen++;
+        PlaceholderFragment currFrag = PlaceholderFragment.newInstance(position+1);
+        mFragmentIDs.add((long)idGen);
+        mFragments.add(currFrag);
+
+        notifyItemInserted(position);
+
     }
 
 
@@ -81,6 +97,19 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         if(getItemCount() == 0){
             addHookFrag();
         }
+
+    }
+
+    public void clearHooks(TabLayout tabs){
+
+        int tmpLength = getItemCount();
+        idGen = 0;
+        mFragments = new ArrayList<PlaceholderFragment>();
+        for(int i = 0; i < tmpLength; i++){
+            tabs.removeTabAt(0);
+        }
+        notifyItemRangeRemoved(0, tmpLength);
+        mFragmentIDs = new ArrayList<Long>();
 
 
     }

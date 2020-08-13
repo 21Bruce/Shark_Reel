@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import com.dc.shark_reel_t5.ui.main.SectionsPagerAdapter;
@@ -29,9 +30,11 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "mainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -128,10 +131,20 @@ public class MainActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.e(TAG, "ERROR, data csv not received or formatted incorrectly");
                 }
 
-                MainActivity.this.finish();
-                System.exit(0);
+                //clear all hook fragment and adapter data
+                sectionsPagerAdapter.clearHooks(tabLayout);
+                clearData();
+
+                //click add once everything has loaded
+                add.post(new Runnable(){
+                    @Override
+                    public void run() {
+                        add.performClick();
+                    }
+                });
 
             }
 
