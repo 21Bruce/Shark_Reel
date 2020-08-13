@@ -58,7 +58,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     //Dynamic(runtime) methods:
 
     //On call: adds a hook to the end of the list in UI(DOES NOT CHANGE BACK END VARIABLES YET)
-    public void addHookFrag() {
+    public void addHookFrag(TabLayout tabs) {
 
         idGen++;
         PlaceholderFragment currFrag = PlaceholderFragment.newInstance(getItemCount()+1);
@@ -67,18 +67,10 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
         notifyItemInserted(getItemCount()-1);
 
-    }
-
-    public void addHookFrag(int position) {
-
-        idGen++;
-        PlaceholderFragment currFrag = PlaceholderFragment.newInstance(position+1);
-        mFragmentIDs.add((long)idGen);
-        mFragments.add(currFrag);
-
-        notifyItemInserted(position);
+        tabs.selectTab(tabs.getTabAt(getItemCount()-1));
 
     }
+
 
 
     public void delHookFrag(int position, TabLayout tabs) {
@@ -95,7 +87,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         }
 
         if(getItemCount() == 0){
-            addHookFrag();
+            addHookFrag(tabs);
         }
 
     }

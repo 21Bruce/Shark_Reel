@@ -19,7 +19,6 @@ import com.dc.shark_reel_t5.ui.main.SectionsPagerAdapter;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
 
 import static com.dc.shark_reel_t5.ui.main.Hooks.*;
 
@@ -55,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton delete = findViewById(R.id.delete);
 
         //create first hook
-        sectionsPagerAdapter.addHookFrag();
+        sectionsPagerAdapter.addHookFrag(tabLayout);
         addData();
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sectionsPagerAdapter.addHookFrag();
+                sectionsPagerAdapter.addHookFrag(tabLayout);
                 addData();
 
             }
@@ -125,9 +124,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent fileIntent = new Intent(Intent.ACTION_SEND);
                     fileIntent.setType("text/csv");
                     fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data");
+                    fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                     fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                    fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                     fileIntent.setData(path);
                     startActivity(Intent.createChooser(fileIntent, "send mail"));
 
