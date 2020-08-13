@@ -80,6 +80,10 @@ public class Hooks {
         collection.remove(position);
     }
 
+    public static void clearData(){
+        collection = new ArrayList<String[]>(0);
+    }
+
     public static String getData(int hook, int index) {
 
         if (collection.get(hook)[index] == null) {

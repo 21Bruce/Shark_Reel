@@ -134,7 +134,17 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(TAG, "ERROR, data csv not received or formatted incorrectly");
                 }
 
-//                sectionsPagerAdapter.clearHooks(tabLayout);
+                //clear all hook fragment and adapter data
+                sectionsPagerAdapter.clearHooks(tabLayout);
+                clearData();
+
+                //click add once everything has loaded
+                add.post(new Runnable(){
+                    @Override
+                    public void run() {
+                        add.performClick();
+                    }
+                });
 
             }
 

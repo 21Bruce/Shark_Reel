@@ -65,7 +65,18 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         mFragmentIDs.add((long)idGen);
         mFragments.add(currFrag);
 
-        notifyItemInserted(mFragments.size()-1);
+        notifyItemInserted(getItemCount()-1);
+
+    }
+
+    public void addHookFrag(int position) {
+
+        idGen++;
+        PlaceholderFragment currFrag = PlaceholderFragment.newInstance(position+1);
+        mFragmentIDs.add((long)idGen);
+        mFragments.add(currFrag);
+
+        notifyItemInserted(position);
 
     }
 
@@ -82,7 +93,6 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         for(int i = position; i < getItemCount(); i++){
             mFragments.get(i).updatePosition(i + 1);
         }
-        Log.i(TAG, "Tab deleted");
 
         if(getItemCount() == 0){
             addHookFrag();
@@ -90,10 +100,19 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
     }
 
-//    public void clearHooks(TabLayout tabs){
-//        mFragments = new ArrayList<PlaceholderFragment>();
-//        mFragmentIDs = new
-//    }
+    public void clearHooks(TabLayout tabs){
+
+        int tmpLength = getItemCount();
+        idGen = 0;
+        mFragments = new ArrayList<PlaceholderFragment>();
+        for(int i = 0; i < tmpLength; i++){
+            tabs.removeTabAt(0);
+        }
+        notifyItemRangeRemoved(0, tmpLength);
+        mFragmentIDs = new ArrayList<Long>();
+
+
+    }
 
     @Override
     public int getItemCount() {
