@@ -11,6 +11,5 @@ We are the only app on the market providing this service and we are currently on
 
 Plans for the future:
 
-1. Add a logging system(BACK-END)
-2. Add a live database
-3. Add a livemap of tagged sharks
+1. Add a live database
+2. Add a livemap of tagged sharks
