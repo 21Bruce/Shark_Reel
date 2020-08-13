@@ -2,8 +2,6 @@ package com.dc.shark_reel_t5;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -128,9 +126,8 @@ public class MainActivity extends AppCompatActivity {
                     fileIntent.setType("text/csv");
                     fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data");
                     fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-                    fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                     fileIntent.setData(path);
                     startActivity(Intent.createChooser(fileIntent, "send mail"));
 
