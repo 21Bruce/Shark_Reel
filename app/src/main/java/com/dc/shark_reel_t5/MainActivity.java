@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout);
                 deleteData(tabLayout.getSelectedTabPosition());
+                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout);
 
             }
         });
