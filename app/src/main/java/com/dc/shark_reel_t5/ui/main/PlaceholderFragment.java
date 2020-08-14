@@ -81,6 +81,7 @@ public class PlaceholderFragment extends Fragment {
     private boolean reset;
 
     public static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String TAG = "placeholderFragment";
 
     private PageViewModel pageViewModel;
 
