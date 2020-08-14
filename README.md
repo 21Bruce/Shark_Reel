@@ -28,7 +28,7 @@ The implemented changes include:
 Changes we plan to implement next:
 
 -Hook insertion: The ability to delete and reinsert a hook at a specified location. This should help preserve any specified order that the user wants to create
--Pop-Up on export: Throw a pop-up confirming that the user would like to export. If a user accidnetally presses the export button in the current state of the app, all data is wiped from the app
+-Pop-Up on export: Throw a pop-up confirming that the user would like to export. If a user accidnetally presses the export button in the current state of the app, all local data is wiped from the app
 
 
 
