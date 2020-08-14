@@ -61,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sectionsPagerAdapter.addHookFrag(tabLayout);
+                tabLayout.selectTab(tabLayout.getTabAt(tabLayout.getTabCount()-1));
                 addData();
 
             }
@@ -84,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 deleteData(position);
                 addData(position);
                 sectionsPagerAdapter.delHookFrag(position, tabLayout, false);
-                sectionsPagerAdapter.addHookFrag(position, tabLayout);
-
+                sectionsPagerAdapter.addHookFrag(position, tabLayout, false);
+                tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
 
