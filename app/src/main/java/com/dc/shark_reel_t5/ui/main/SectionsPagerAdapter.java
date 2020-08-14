@@ -86,7 +86,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
 
 
-    public void delHookFrag(int position, TabLayout tabs) {
+    public void delHookFrag(int position, TabLayout tabs, boolean updateSectionLabels) {
 
         mFragments.remove(position);
         mFragmentIDs.remove(position);
@@ -95,8 +95,10 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         notifyItemRangeChanged(position, getItemCount() - position);
 
         //Updates the section number for all effected fragments
-        for(int i = position; i < getItemCount(); i++){
-            mFragments.get(i).updatePosition(i + 1);
+        if(updateSectionLabels){
+            for(int i = position; i < getItemCount(); i++){
+                mFragments.get(i).updatePosition(i + 1);
+            }
         }
 
         if(getItemCount() == 0){

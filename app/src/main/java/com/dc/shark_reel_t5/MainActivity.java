@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteData(tabLayout.getSelectedTabPosition());
-                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout);
+                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout, true);
 
             }
         });
@@ -83,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 int position = tabLayout.getSelectedTabPosition();
                 deleteData(position);
                 addData(position);
-                sectionsPagerAdapter.delHookFrag(position, tabLayout);
+                sectionsPagerAdapter.delHookFrag(position, tabLayout, false);
                 sectionsPagerAdapter.addHookFrag(position, tabLayout);
+
             }
         });
 
