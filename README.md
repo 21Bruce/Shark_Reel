@@ -20,19 +20,19 @@ Recently we have made many quality of life improvements on the base app in order
 
 The implemented changes include:
 
--Hook deletion: Now users can delete a specific hook
--Hook selection on creation: If a user adds a hook, this hook will automatically be displayed
--Hook clearance on export: Hook's will now automatically clear on export rather than completely restarting the app
--Efficient export operation: Exporting used to throw an error due to permission conflicts, which would in turn lag the app. This has been patched
+-Hook deletion: Now users can delete a specific hook<br />
+-Hook selection on creation: If a user adds a hook, this hook will automatically be displayed<br />
+-Hook clearance on export: Hook's will now automatically clear on export rather than completely restarting the app<br />
+-Efficient export operation: Exporting used to throw an error due to permission conflicts, which would in turn lag the app. This has been patched<br />
 
-Changes we plan to implement next:
+Changes we plan to implement next:<br />
 
--Hook insertion: The ability to delete and reinsert a hook at a specified location. This should help preserve any specified order that the user wants to create
--Pop-Up on export: Throw a pop-up confirming that the user would like to export. If a user accidnetally presses the export button in the current state of the app, all local data is wiped from the app
+-Hook insertion: The ability to delete and reinsert a hook at a specified location. This should help preserve any specified order that the user wants to create<br />
+-Pop-Up on export: Throw a pop-up confirming that the user would like to export. If a user accidentally presses the export button in the current state of the app, all local data is wiped from the app
 
 
 
-Plans for the future:
+Plans for the future:<br />
 
-1. Add a live database
+1. Add a live database<br />
 2. Add a live map of tagged sharks
