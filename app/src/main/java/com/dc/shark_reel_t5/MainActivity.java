@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton export = findViewById(R.id.export);
         FloatingActionButton add = findViewById(R.id.add);
         FloatingActionButton delete = findViewById(R.id.delete);
+        FloatingActionButton clear = findViewById(R.id.clear);
 
         //create first hook
         sectionsPagerAdapter.addHookFrag(tabLayout);
@@ -72,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
                 deleteData(tabLayout.getSelectedTabPosition());
                 sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout);
 
+            }
+        });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                int position = tabLayout.getSelectedTabPosition();
+                deleteData(position);
+                addData(position);
+                sectionsPagerAdapter.delHookFrag(position, tabLayout);
+                sectionsPagerAdapter.addHookFrag(position, tabLayout);
             }
         });
 
@@ -122,11 +135,9 @@ public class MainActivity extends AppCompatActivity {
                     File fileLocation = new File(getFilesDir(), "data.csv");
                     Uri path = FileProvider.getUriForFile(context, "com.example.exportcsv.fileprovider", fileLocation);
                     Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                    fileIntent.setType("text/csv");
                     fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data");
                     fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                     fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     fileIntent.setData(path);
                     startActivity(Intent.createChooser(fileIntent, "send mail"));
 

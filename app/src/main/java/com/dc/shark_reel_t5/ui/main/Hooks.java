@@ -71,11 +71,23 @@ public class Hooks {
     }
 
     public static void addData() {
+
         collection.add(new String[32]);
         collection.get(collection.size() - 1)[13] = "Decimal Degrees";
         collection.get(collection.size() - 1)[15] = "Decimal Degrees";
         return;
+
     }
+
+    public static void addData(int position) {
+
+        collection.add(position, new String[32]);
+        collection.get(collection.size() - 1)[13] = "Decimal Degrees";
+        collection.get(collection.size() - 1)[15] = "Decimal Degrees";
+        return;
+
+    }
+
     public static void deleteData(int position) {
         collection.remove(position);
     }

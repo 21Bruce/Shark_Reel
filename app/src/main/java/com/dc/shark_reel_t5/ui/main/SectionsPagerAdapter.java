@@ -71,6 +71,19 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
     }
 
+    public void addHookFrag(int position, TabLayout tabs) {
+
+        idGen++;
+        PlaceholderFragment currFrag = PlaceholderFragment.newInstance(position+1);
+        mFragmentIDs.add((long)idGen);
+        mFragments.add(position, currFrag);
+
+        notifyItemInserted(position);
+
+        tabs.selectTab(tabs.getTabAt(position));
+
+    }
+
 
 
     public void delHookFrag(int position, TabLayout tabs) {
