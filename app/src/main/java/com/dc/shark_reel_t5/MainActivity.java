@@ -75,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
                 deleteData(tabLayout.getSelectedTabPosition());
                 sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout, true);
 
+                if(tabLayout.getTabCount() == 0){
+                    delete.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            add.performClick();
+                        }
+                    });
+                }
             }
         });
 
@@ -96,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 } catch(Exception e){
-                    Log.w(TAG, "WARNING, Thread is doing too much");
+                    Log.w(TAG, "WARNING, Main Thread is doing too much");
                     sectionsPagerAdapter.addHookFrag(position, tabLayout, false);
 
                     clear.post(new Runnable() {
