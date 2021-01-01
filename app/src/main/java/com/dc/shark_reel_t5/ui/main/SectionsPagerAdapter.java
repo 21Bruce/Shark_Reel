@@ -67,13 +67,32 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
 
         notifyItemInserted(getItemCount()-1);
 
-        tabs.selectTab(tabs.getTabAt(getItemCount()-1));
+
+    }
+
+    public void addHookFrag(int position, TabLayout tabs, boolean updateSectionLabels) {
+
+        idGen++;
+        PlaceholderFragment currFrag = PlaceholderFragment.newInstance(position+1);
+        mFragmentIDs.add((long)idGen);
+        mFragments.add(position, currFrag);
+
+        notifyItemInserted(position);
+
+        //Updates the section number for all effected fragments
+        if(updateSectionLabels){
+            for(int i = position; i < getItemCount(); i++){
+                mFragments.get(i).updatePosition(i + 1);
+            }
+        }
+
+
 
     }
 
 
 
-    public void delHookFrag(int position, TabLayout tabs) {
+    public void delHookFrag(int position, TabLayout tabs, boolean updateSectionLabels) {
 
         mFragments.remove(position);
         mFragmentIDs.remove(position);
@@ -82,13 +101,12 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         notifyItemRangeChanged(position, getItemCount() - position);
 
         //Updates the section number for all effected fragments
-        for(int i = position; i < getItemCount(); i++){
-            mFragments.get(i).updatePosition(i + 1);
+        if(updateSectionLabels){
+            for(int i = position; i < getItemCount(); i++){
+                mFragments.get(i).updatePosition(i + 1);
+            }
         }
 
-        if(getItemCount() == 0){
-            addHookFrag(tabs);
-        }
 
     }
 

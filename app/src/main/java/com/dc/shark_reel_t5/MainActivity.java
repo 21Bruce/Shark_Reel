@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton export = findViewById(R.id.export);
         FloatingActionButton add = findViewById(R.id.add);
         FloatingActionButton delete = findViewById(R.id.delete);
+        FloatingActionButton clear = findViewById(R.id.clear);
 
         //create first hook
         sectionsPagerAdapter.addHookFrag(tabLayout);
@@ -60,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sectionsPagerAdapter.addHookFrag(tabLayout);
+                tabLayout.selectTab(tabLayout.getTabAt(tabLayout.getTabCount()-1));
                 addData();
 
             }
@@ -70,7 +73,47 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteData(tabLayout.getSelectedTabPosition());
-                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout);
+                sectionsPagerAdapter.delHookFrag(tabLayout.getSelectedTabPosition(), tabLayout, true);
+
+                if(tabLayout.getTabCount() == 0){
+                    delete.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            add.performClick();
+                        }
+                    });
+                }
+            }
+        });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                int position = tabLayout.getSelectedTabPosition();
+                deleteData(position);
+                addData(position);
+                sectionsPagerAdapter.delHookFrag(position, tabLayout, false);
+                try{
+                    sectionsPagerAdapter.addHookFrag(position, tabLayout, false);
+
+                    clear.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            tabLayout.selectTab(tabLayout.getTabAt(position));
+                        }
+                    });
+                } catch(Exception e){
+                    Log.w(TAG, "WARNING, Main Thread is doing too much");
+                    sectionsPagerAdapter.addHookFrag(position, tabLayout, false);
+
+                    clear.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            tabLayout.selectTab(tabLayout.getTabAt(position));
+                        }
+                    });
+                }
 
             }
         });
@@ -122,11 +165,9 @@ public class MainActivity extends AppCompatActivity {
                     File fileLocation = new File(getFilesDir(), "data.csv");
                     Uri path = FileProvider.getUriForFile(context, "com.example.exportcsv.fileprovider", fileLocation);
                     Intent fileIntent = new Intent(Intent.ACTION_SEND);
-                    fileIntent.setType("text/csv");
                     fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data");
                     fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                     fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     fileIntent.setData(path);
                     startActivity(Intent.createChooser(fileIntent, "send mail"));
 
