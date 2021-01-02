@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //add the elements from each hook
                 int i = 0;
-                while (i == 0 || i < getHookAmount()-1) {
+                while (i == 0 || i < getHookAmount()) {
 
                     data.append("\n" + sectionsPagerAdapter.getTitle(i));
                     for (int j = 0; j < getCategoriesLength(i); j++) {
@@ -176,17 +176,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(TAG, "ERROR, data csv not received or formatted incorrectly");
                 }
 
-                //clear all hook fragment and adapter data
-                sectionsPagerAdapter.clearHooks(tabLayout);
-                clearData();
-
-                //click add once everything has loaded, uses post to run on main thread
-                add.post(new Runnable(){
-                    @Override
-                    public void run() {
-                        add.performClick();
-                    }
-                });
 
             }
 
